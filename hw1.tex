@@ -1,0 +1,37 @@
+\documentclass[12pt]{article}
+\usepackage{defs601}                   
+\hwstyle
+\begin{document}
+\noindent\framebox[\textwidth]{
+{\normalsize CS601:} \hfill {\bf Homework 1} \hfill 
+{Due in class Thursday, Jan. 21, 2016}}
+\addtocounter{section}{1}
+
+Remember, you should solve these problems, so that you are able to discuss or present the solutions
+in the next class.  You do not need to write these up, but it is a good idea to write down
+notes for yourself from which you can quickly and easily generate the solutions.
+
+We will think of a Turing Machine input as a binary string, $w\in \set{0,1}^*$, which appears
+between the left marker, ``$\triangleright$'' and the infinite string of blanks, $\sqcup$.  The
+following problems show that we can ignore the type of the input:  if we want to think of the input
+as a binary string, $w$, that's what it is.  If we want to think of it as a natural number, fine,
+it's $\zeta(w)$.  If we want to think
+of it as a pair of natural numbers, fine it's $(L(\zeta(w)), R(\zeta(w)))$, etc.
+
+\begin{enumerate}
+\item Show that the following pairing function given by Cantor is a 1:1
+correspondence between $\N\times\N$ and $\N$:
+\[ P(i,j) \quad\mapsto\quad {(i+j)(i+j+1)\over 2} + i\]
+[Hint: look at enough examples to get an understanding of what this
+function does.  Then give a clear, simple proof that this map is indeed 1:1
+and onto.  I don't care how formal you are as long as your argument is very clear
+and convincing.  It may help to recall that $\sum_{i=1}^n i = n(n+1)/2$.
+You might want to show the existence of the ``inverses'' of the pairing function.  These are
+functions $L,R: \N\rightarrow \N$ with the properties that
+\[ \forall i,j,k \in \N \,( P(L(k),R(k)) = k \quad \&\quad L(P(i,j)) = i \quad \&\quad R(P(i,j))= j)\]
+\item Construct a simple, easy to compute 1:1 and onto map, $\zeta$, from the set of binary strings
+  to the naturals, i.e., $\zeta: \set{0,1}^\star\bijection\N$.
+\end{enumerate}
+
+\end{document}
+

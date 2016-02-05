@@ -1,0 +1,21 @@
+\newcommand{\labelAbove}[2]{\draw (#1.north) node[above] {#2};}   % mark node above
+\newcommand{\labelBelow}[2]{\draw (#1.south) node[below] {#2};}   % mark node below
+\newcommand{\labelLeft}[2]{\draw (#1.west) node[left] {#2};}   % mark node left
+\newcommand{\labelRight}[2]{\draw (#1.east) node[right] {#2};}   % mark node right
+\newcommand{\slabelAbove}[1]{\draw (#1.north) node[above] {{\bf s}};}   % label s above
+\newcommand{\slabelBelow}[1]{\draw (#1.south) node[below] {{\bf s}};}   % label s below
+\newcommand{\indexLabelBelow}[2]{\draw (#1.south) node[below] {{\bf #2}};}   % label s below
+\newcommand{\tlabelAbove}[1]{\draw (#1.north) node[above] {{\bf t}};}   % label t above
+\newcommand{\finalState}[2]{\draw (#1) circle (.2 * #2);}  % final state
+\newcommand{\startState}[2]{\draw ([shift=(225:.14 * #2)]#1.west) -- (#1.west) --
+  ([shift=(135:.14 * #2)]#1.west);}  % start state
+\newcommand{\vState}[1]{\draw (#1.north east) --  (#1.south east)}  % draw vertical state
+\newcommand{\hState}[1]{\draw (#1.north east) --  (#1.north west)}  % draw vertical state
+\newcommand{\labelGraph}[2]{\draw (#1.west) node[left,xshift=-2ex] {{\Large #2}};}
+\newcommand{\labelGraphDist}[3]{\draw (#1.west) node[left,xshift=-#3] {{\Large #2}};}
+\newcommand{\emmaAutomataStyle}{
+\tikzstyle{every initial by arrow}=[-triangle 90,initial text=,initial distance=0.01,fill=white]
+\tikzstyle{every picture}=[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]}
+
+
+

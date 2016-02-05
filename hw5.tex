@@ -1,0 +1,40 @@
+\documentclass[12pt]{article}
+\usepackage{defs601}                   
+\hwstyle
+\begin{document}
+\thispagestyle{empty}
+\noindent\framebox[\textwidth]{
+{\normalsize CS601:} \hfill {\bf Homework 5} \hfill 
+{Due in class Thr, Feb. 4, 2016}}
+\addtocounter{section}{5}
+
+\begin{enumerate}
+\item[0] We didn't finish going over two the proofs from Theorem 4.2 from last time -- EMPTY-CFL and
+MEMBER-CFL.  Please be prepared to talk about these next time.  Also please do the following problems:
+
+\[
+\begin{array}{lrcl}
+\textbf{0a.}&\mbox{{\rm EmptyCFL}} &=& \bigset{G}{G \mbox{ is a CFG};\; \sel(G) =
+  \emptyset} \\[1ex] 
+\textbf{0b.}&\mbox{{\rm MemberCFL}} &=& \bigset{\angle{G,w}}{G \mbox{ is a CFG};\;w\in\sel(G)}\\
+\end{array}
+\]
+
+
+\item   Recall the definition of $F(\dtime[t(n)])$ from the slides for lecture 5.  In particular,
+  $F(\p)$ is the set of total functions computable by Turing machines that run in polynomial time.  
+
+Consider the set PTM  
+$=\bigset{M_i}{\exists c \forall n(\mbox{ TM $M_i$ runs in time $cn^c$ on all inputs of length $n$}
+  )}$. 
+That is, PTM is the set of TMs that run in polynomial time.
+Give two reductions to show that PTM is neither r.e.\ nor co-r.e.
+
+\item Show that there is a recursive set of TMs, $R \subseteq$ PTM, such that for all $f \in F(\p)$,
+  there exists $M_i \in R$ such that the function computed by $M_i$ is $f$.  [Hint:  construct $R$
+    as the set of all TMs which run with an explicit polynomial-time clock which shuts the TM off
+    when the clock expires.]
+\end{enumerate}
+
+\end{document}
+

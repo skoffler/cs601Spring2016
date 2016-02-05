@@ -1,0 +1,42 @@
+\documentclass[12pt]{article}
+\usepackage{defs601}                   
+\hwstyle
+\begin{document}
+\thispagestyle{empty}
+\noindent\framebox[\textwidth]{
+{\normalsize CS601:} \hfill {\bf Homework 4} \hfill 
+{Due in class Tue, Feb. 2, 2016}}
+\addtocounter{section}{4}
+
+\begin{enumerate}
+\item Prove that if $S$ is r.e.\ hard or co-r.e.\ hard, then $S$ is not recursive.  (From now on, the main way we
+  will prove that a problem is not recursive, i.e., not computable, is to show that it is r.e. hard
+  or co-r.e. hard.)
+
+\item Prove Theorem 4.2 from the posted notes for Lecture 4.  This is review from the course you
+  took on Automata and Formal Languages.  I want you learn or relearn efficient algorithms for all
+  six of these problems.  Good references for these problems are listed on the syllabus page: 
+ [Hopcroft, Motwani \& Ullman], [Lewis \& Papadimitirou] or [Sipser].  Unlike ususal problems, it is
+ fine to look these up.  I want you to learn these algorithms and be able to explain them and use them.
+      
+\[
+\begin{array}{lrcl}
+\textbf{2a.}&\mbox{{\rm EmptyNFA}} &=& \bigset{N}{N \mbox{ is an NFA};\; \sel(N) = \emptyset} \\[1ex]
+\textbf{2b.}&\Sigma^\star\mbox{{\rm DFA}} &=& \bigset{D}{D\mbox{ is a DFA};\;
+  \sel(D) = \Sigma^\star}\\[1ex]
+\textbf{2c.}&\mbox{{\rm MemberNFA}} &=& \bigset{\angle{N,w}}{N \mbox{ is an NFA};\; w\in \sel(N)}\\[1ex]
+\textbf{2d.}&\mbox{{\rm EqualDFA}} &=& \bigset{\angle{D_1,D_2}}{D_1,D_2 \mbox{ DFAs};\;\sel(D_1) =\sel(D_2)}\\[1ex]
+\textbf{2a.}&\mbox{{\rm EmptyCFL}} &=& \bigset{G}{G \mbox{ is a CFG};\; \sel(G) =
+  \emptyset} \\[1ex] 
+\textbf{2a.}&\mbox{{\rm MemberCFL}} &=& \bigset{\angle{G,w}}{G \mbox{ is a CFG};\;w\in\sel(G)}\\
+\end{array}
+\]
+
+
+
+
+ 
+\end{enumerate}
+
+\end{document}
+

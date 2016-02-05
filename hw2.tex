@@ -1,0 +1,54 @@
+\documentclass[12pt]{article}
+\usepackage{defs601}                   
+\hwstyle
+\begin{document}
+\thispagestyle{empty}
+\noindent\framebox[\textwidth]{
+{\normalsize CS601:} \hfill {\bf Homework 2} \hfill 
+{Due in class Tue, Jan. 26, 2016}}
+\addtocounter{section}{2}
+
+In Lecture 2 we defined partial recursive functions, total recursive functions, recursive sets,
+r.e. sets and co-r.e. sets. We showed that all Turing machines can be listed out as $M_0, M_1, 
+\ldots, M_n, \ldots$, where the subscript, $n$, is a natural number, which may also be thought of as a binary
+string, $w = \zeta^{-1}(n)$, which is a binary encoding of the the program that $M_n$ runs, i.e.,
+$n$ is the program. 
+
+As Turing proved, there is a universal TM, $U$, with the property that for all $i,j\in\N$, $U(i,j) =
+M_i(j)$, i.e., the universal machine on input $(i,j)$ exactly simulates $M_i$ on input $j$.
+
+We also defined $W_i = \sel(M_i) = \bigset{w}{M_i(w) = 1}$, i.e., the set accepted by TM $M_i$ is
+the $i$th r.e. set.  The set of all r.e. sets is thus $\RE = \set{W_0, W_1, \ldots}$.
+
+We defined the diagonal set, $K = \bigset{i}{i \in W_i}$. We proved that $K$ is r.e., but that it's
+complement, $\ov{K}  = \bigset{i}{i \not\in W_i}$ is not r.e.
+
+Please read the notes for lectures 1 and 2 posted on the syllabus page.
+
+Even though the proofs so far are reasonably simple, the concepts are deep and take a while to
+absorb.  The goal of this homework is to help you do that.
+
+\begin{enumerate}
+\item Let $A_{\text{TM}} = \bigset{(i,j)}{M_i(j) = 1}$.  
+
+\begin{enumerate}
+   \item Show directly from the definition of r.e., that $A_{\text{TM}}$ is r.e., i.e., that 
+         $p_{A_{\text{TM}}}$ is a partial recursive function.  
+   \item Show from the fact that $\ov{K}$ is not r.e., that $A_{\text{TM}}$ is not recursive.  Do
+     this by contradiction:  assume that $A_{\text{TM}}$ is recursive, i.e., you have a TM, $M_A$, that
+     computes $\chi_{A_{\text{TM}}}$.  Next modify $M_A$ to build a TM that computes $\chi_K$.
+\end{enumerate}
+
+\item (Where the name ``recursively enumerable'' comes from.)
+  \begin{enumerate}
+   \item Show that every finite set, $F$, is r.e.
+   \item Suppose that $W_i$ is infinite.  Given $M_i$, show how to build a TM computing a total
+     recursive function, $f_i$, such that $f_i$ enumerates $W_i$, i.e., 
+\[ W_i \qe \set{f_i(0), f_i(1), f_i(2), \ldots }\]
+Can you always construct $f_i$ so that it is a 1:1 function?
+  \end{enumerate}
+
+\end{enumerate}
+
+\end{document}
+

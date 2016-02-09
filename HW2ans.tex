@@ -1,0 +1,192 @@
+\documentclass[12pt]{article}
+\usepackage{defs601}                   
+\hwstyle
+\begin{document}
+\thispagestyle{empty}
+\noindent\framebox[\textwidth]{
+{\normalsize CS601:} \hfill {\bf Homework 2} \hfill 
+{Due in class Tue, Jan. 26, 2016}}
+\addtocounter{section}{2}
+
+In Lecture 2 we defined partial recursive functions, total recursive functions, recursive sets,
+r.e. sets and co-r.e. sets. We showed that all Turing machines can be listed out as $M_0, M_1, 
+\ldots, M_n, \ldots$, where the subscript, $n$, is a natural number, which may also be thought of as a binary
+string, $w = \zeta^{-1}(n)$, which is a binary encoding of the the program that $M_n$ runs, i.e.,
+$n$ is the program. 
+
+As Turing proved, there is a universal TM, $U$, with the property that for all $i,j\in\N$, $U(i,j) =
+M_i(j)$, i.e., the universal machine on input $(i,j)$ exactly simulates $M_i$ on input $j$.
+
+We also defined $W_i = \sel(M_i) = \bigset{w}{M_i(w) = 1}$, i.e., the set accepted by TM $M_i$ is
+the $i$th r.e. set.  The set of all r.e. sets is thus $\RE = \set{W_0, W_1, \ldots}$.
+
+We defined the diagonal set, $K = \bigset{i}{i \in W_i}$. We proved that $K$ is r.e., but that it's
+complement, $\ov{K}  = \bigset{i}{i \not\in W_i}$ is not r.e.
+
+Please read the notes for lectures 1 and 2 posted on the syllabus page.
+
+Even though the proofs so far are reasonably simple, the concepts are deep and take a while to
+absorb.  The goal of this homework is to help you do that.
+
+\begin{enumerate}
+\item Let $A_{\text{TM}} = \bigset{(i,j)}{M_i(j) = 1}$.  
+
+\begin{enumerate}
+   \item Show directly from the definition of r.e., that $A_{\text{TM}}$ is r.e., i.e., that 
+         $p_{A_{\text{TM}}}$ is a partial recursive function.  
+         
+         \textbf{Proof}: Let $A_{\text{TM}} = \bigset{(i,j)}{M_i(j) = 1}$.
+         \\To show that $A_{\text{TM}}$ is r.e., we need to show that there exists a TM, $M_{A}$, that computes  the partial(characteristic) recursive function, $p_{A_{\text{TM}}}$, for $A_{\text{TM}}$. 
+         \\We need to show that $\forall w \in \Sigma_{0}^{*} (p_{A_{\text{TM}}}(w) = M_{A}(w))$ where $w$ is the binary encoding of a pair of natural numbers $i$ and $j$, which can be decoded using the left and right pairing functions respectively, as defined in class.
+         \\Let $M_{A}$ be the TM that computes $p_{A_{\text{TM}}}(w) = p_{A_{\text{TM}}}(L(w),R(w)) = p_{A_{\text{TM}}}(i,j)$.
+		  \begin{center}	 
+         \[ p_{A_{\text{TM}}}(i,j) = 
+         \left \{
+         \begin{tabular}{cc}
+         1 & if (i,j) \in A_{\text{TM}}  \\
+         \nearrow & otherwise \\
+         \end{tabular}
+         \right 
+         \]
+	    \end{center}
+          More specifically, 
+         \begin{center}
+          \[ p_{A_{\text{TM}}}(i,j) = 
+          \left \{
+          \begin{tabular}{cc}
+          1 & if M_{i}(j)=1  \\
+          \nearrow & otherwise \\
+          \end{tabular}
+          \right 
+          \]
+        \end{center}
+        
+         On input X, $M_{A}$ operates as follows:
+         \begin{description}
+         	\item[1] Verify X is an encoding of a pair of natural numbers, and decode the numbers, i and j using the left and right pairing functions respectively. 
+         	\\If X is not valid input reject.
+         	\item[2] Run TM $M_{i}$ on input $j$:
+			         	if ($M_{i}(j)$==1) return 1
+			         	else diverge
+         \end{description}
+        Since we have constructed a TM $M_{A}$ that computes $p_{A_{\text{TM}}}$, we have shown that $A_{\text{TM}$ is r.e. $\Box$ 
+         
+   \item Show from the fact that $\ov{K}$ is not r.e., that $A_{\text{TM}}$ is not recursive.  
+   
+     \textbf{Proof}: Assume, for the sake of contradiction, that $A_{\text{TM}}$ is recursive, therefore we have TM, $M_{A}$, that
+     computes $\chi_{A_{\text{TM}}}$, the characteristic function of $A_{\text{TM}}$, which is defined as follows: 
+      \begin{center}	 
+       	\[ \chi_{A_{\text{TM}}}(i,j) = 
+       	\left \{
+       	\begin{tabular}{cc}
+       	1 & if (i,j) \in A_{\text{TM}}  \\
+       	0 & otherwise \\
+       	\end{tabular}
+       	\right 
+       	\]
+       \end{center}
+       
+       This means we can construct a TM, $M_{\ov{K}}$, to compute the characteristic function, $\chi_{\ov{K}}$ by modifying $M_{A}$.
+       
+       Let $M_{\ov{K}}$ be the TM that computes $\chi_{\ov{K}}$.
+       
+       On input X, $M_{\ov{K}}$ operates as follows:
+       \begin{description}
+       	\item[1] Verify X is an encoding of a pair of natural numbers, and decode the numbers, i and j using the left and right pairing functions respectively. 
+       	\\If X is not valid input or if $i \neq j$ ignore the input.
+       	\item[2] Run TM $M_A$ on input $(i,j)$ which is equal to $(i,i)$:
+       	\\if ($M_{i}(i)$==1) return 1
+       	\\else return 0
+       \end{description}
+       
+       Therefore, $M_{\ov{K}}$, calculates $\chi_{\ov{K}}$ where
+       
+      \begin{center}	 
+      	\[ \chi_{\ov{K}}(i,i) = 
+      	\left \{
+      	\begin{tabular}{cc}
+      	1 & if (i,i) \in A_{\text{TM}} \\
+      	0 & otherwise \\
+      	\end{tabular}
+      	\right 
+      	\]
+      \end{center}
+      
+      Which is equal to 
+      \begin{center}	 
+      	\[ \chi_{\ov{K}}(i,i) = 
+      	\left \{
+      	\begin{tabular}{cc}
+      	1 & M_{i}(i)=1 \\
+      	0 & otherwise \\
+      	\end{tabular}
+      	\right 
+      	\]
+      \end{center}
+       
+      By constructing TM $M_{A}$ that
+      computes $\chi_{A_{\text{TM}}}$, we have shown the existence of a TM $M_{\ov{K}}$ that calculates $\chi_{\ov{K}}$. 
+      
+      Therefore $K$ is recursive $\Rightarrow$  $\ov{K}$ is r.e. $  \rightarrow\leftarrow$ (We have shown $\ov{K}$ is not r.e.)
+      \\$\therefore$ $A_{\text{TM}}$ is not recursive. $\Box$
+     
+\end{enumerate}
+
+\item (Where the name ``recursively enumerable'' comes from.)
+  \begin{enumerate}
+   \item Show that every finite set, $F$, is r.e.
+   
+    \textbf{Proof}: Let $M_\text{F}$ be the TM that computes the partial recursive function $f$ s.t. 
+    \\$\forall w \in \Sigma_{_F}^{*}$ (f(w) = $M_\text{F}$(w)).
+    
+    $M_\text{F}$ on input $F$ operates as follows: 
+    \\If $w \in F$: return 1
+    \\		 else return 0
+    
+    
+    Since $F$ is finite, checking to see if $w$ is an element of $F$ will take a finite amount of time, thus $M_\text{F}$ will always halt. Thus  $M_\text{F}$ actually generates a total recursive function, therefore any finite set $F$ is a recursive set. 
+    In class we have shown that every recursive set is an r.e. set. 
+    Therefore, we have shown that every finite set $F$, is r.e. $\Box$
+    
+    
+   \item Suppose that $W_i$ is infinite.  Given $M_i$, show how to build a TM computing a total
+     recursive function, $f_i$, such that $f_i$ enumerates $W_i$, i.e., 
+\[ W_i \qe \set{f_i(0), f_i(1), f_i(2), \ldots }\]
+
+		\textbf{Proof}: Let $M_i$ be the TM that computes the $i$th r.e. set. 
+		\\Let $M_{W_{i}}$ be the TM that computes the total recursive function $f_i$ which enumerates 
+		\\$W_i$, where 
+		$W_i$ = L($M_i) = \{w | M_{i}(w) = 1 \} = \{w_{0}, w_{1}, ..., w_{n}, w_{n+1}, ...\} \forall n \in \mathbb{N}$
+		\\Want to compute a total function $f_i$ such that 
+		\\$W_i$ = \{$f_{i}(0),f_{i}(1),f_{i}(2), ... , f_{i}(n), f_{i}(n+1), ... \} \forall n \in \mathbb{N}$
+		\\Let $\Sigma_{M_{i}}$ be the input alphabet of $M_i$.
+		\\Since $W_{i}$ is infinite and $L(M_{i}) \subseteq \Sigma_{M_{i}}^{*}$, $\Sigma_{M_{i}}^{*}$ must be infinite, where
+		 \\$\Sigma_{M_{i}}^{*}$ = \{$s_{0}, s_{1}, ..., s_{n}, ...\}  \forall n \in \mathbb{N}$, is the set of all strings generated by $\Sigma_{M_{i}}$.  
+		
+		Let $M_{W_{i}}$ be the TM that computes $f_{i}$ on input $M_i$, $M_{W_{i}}$ operates as follows:
+		\\	Let n = 0
+		\begin{description}
+			\item[1] Check to make sure $M_i$ is a valid encoding of a TM.
+			\item[2] Repeat the following for s = 0,1,2,...
+			\item[3] Run $M_{i}$ for s steps on the first s inputs in $\Sigma_{M_{i}}^{*}$
+			\\Let $S_{s}$ = \{$s | M_{i}(s) = 1$ in s steps\} = \{$s | M_{i}$ halts and accepts $s$ within $s$ steps\}
+			\\while ($S_{s} \neq \emptyset$):
+			\\ \{ 	
+			\\ $f_{i}$(n) = $s_{j} \in S_{s}$ where $S_{s} =\{s_{j}, s_{j+1}, ... , s_{k}\}$ where $j \leq k \leq$ s
+			\\output: $f_{i}$(n) = $s_{j} $
+			\\	n++
+			\\	$S_{s}=S_{s}\setminus\{s_{j}\}$
+			\\	$\Sigma_{M_{i}}^{*}$ = $\Sigma_{M_{i}}^{*} \setminus \{s_{j}\}$
+			\\	\}
+			\\s++
+			
+			
+		\end{description}
+Can you always construct $f_i$ so that it is a 1:1 function?
+
+Yes, as illustrated above, $f_i$ can be constructed to be a 1:1 function. Each  $n \in \mathbb{N}$ is assigned to one value $w_{i} \in W_{i}$, this is assured as after each $w_{i}$ is assigned it is removed from the elements remaining to be assigned. 
+  \end{enumerate}
+
+\end{enumerate}
+
+\end{document}
